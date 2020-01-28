@@ -1,0 +1,99 @@
+$blue: #2185d0;
+$gutter: 1% !default;
+
+@function calWidth($col) {
+	@return (100% / 12 * $col) - ($gutter * 2);
+}
+
+@mixin media($queryString) {
+	@media #{$queryString} { // #{ } : {} 안의 내용을 문자열 그대로 사용한다는 의미
+		@content; // @include된 선택자 내부의 내용을 @content 부분에 담겠다는 뜻
+	}
+}
+
+body {
+	font-family: 'Ubuntu', sans-serif;
+	width: 100%;
+	margin: 0px;
+	background-color: #1b1c1d;
+}
+.title {
+	width: 100%;
+	margin: 30px auto;
+	padding: 10px;
+	box-sizing: border-box;
+	color: #e6e7e8;
+}
+.container {
+	width: 100%;
+	position: relative;
+	margin: 0 auto;
+	overflow: hidden;
+
+	.col {
+		height: 50px;
+		float: left;
+		display: inline-block;
+		margin: 5px $gutter;
+		border-radius: 5px;
+		text-align: center;
+		line-height: 50px;
+		color: $blue;
+		border: 2px solid $blue;
+		box-sizing: border-box;
+		transition: ease-in 0.5s;
+	}
+	.col:hover {
+		background-color: $blue;
+		color: #fff;
+	}
+}
+.container > .col-1 {
+	width: calWidth(1);
+}
+.container > .col-2 {
+	width: calWidth(2);
+}
+.container > .col-3 {
+	width: calWidth(3);
+}
+.container > .col-4 {
+	width: calWidth(4);
+}
+.container > .col-5 {
+	width: calWidth(5);
+}
+.container > .col-6 {
+	width: calWidth(6);
+}
+.container > .col-7 {
+	width: calWidth(7);
+}
+.container > .col-8 {
+	width: calWidth(8);
+}
+.container > .col-9 {
+	width: calWidth(9);
+}
+.container > .col-10 {
+	width: calWidth(10);
+}
+.container > .col-11 {
+	width: calWidth(11);
+}
+
+.title, .container {
+	@include media ("(min-width: 1024px)") {
+		width: 960px;
+	}
+}
+.container > .col {
+	@include media ("(max-width: 600px)") {
+		width: calWidth(6);
+	}
+}
+.container > .col {
+	@include media ("(max-width: 360px)") {
+		width: calWidth(12);
+	}
+}
